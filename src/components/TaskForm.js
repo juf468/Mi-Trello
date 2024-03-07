@@ -8,13 +8,19 @@ const TaskForm = ( ) =>{
         description: ''
     })
  const handleChange =(event)=>{
-    console.log(event.target.name, event.target.value)
-
+   setTask ({
+    ...task,
+    [event.target.name]:event.target.value
+   })
+ }
+ const handleSubmit =(event)=>{
+    event.preventDefault()
+    console.log(task)
  }
 return (
-<form>
+<form onSubmit={handleSubmit}>
     <input name="title" type="text" placeholder="title" onChange={handleChange}/>
-    <textarea name="description" placeholder="description" onChange={handleChange}> </textarea>
+    <textarea name="description" placeholder="description" onChange={handleChange} value={task.description}> </textarea>
     <button> save </button>
 </form>
 )
