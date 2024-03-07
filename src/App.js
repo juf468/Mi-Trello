@@ -1,4 +1,5 @@
 
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
@@ -7,9 +8,13 @@ function App() {
  
   return (
     <div className="App">
-    <h1> holi</h1>
-    <TaskForm/>
-    <TaskList/>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element= {<TaskList/>}/>
+        <Route path='/create-task' element= {<TaskForm/>}/>
+        </Routes>
+      </BrowserRouter>
+   
     </div>
   );
 }
