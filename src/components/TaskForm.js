@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addTask } from "../feactures/task/taskSlice"
+import { v4 as uuid} from "uuid"
+
 
 
 const TaskForm = ( ) =>{
@@ -17,8 +19,11 @@ const TaskForm = ( ) =>{
    })
  }
  const handleSubmit =(event)=>{
-    event.preventDefault()
-    dispatch(addTask(task))
+    event.preventDefault();
+    dispatch(addTask({
+        ...task,
+        id:uuid(),//le agrego el id de uuid como prop extra
+     }))
  }
 return (
 <form onSubmit={handleSubmit}>
