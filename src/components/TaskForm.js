@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addTask } from "../feactures/task/taskSlice"
 
 
 const TaskForm = ( ) =>{
-   
+   const dispatch = useDispatch()
+
     const [task, setTask] = useState ({
         title: '',
         description: ''
@@ -15,7 +18,7 @@ const TaskForm = ( ) =>{
  }
  const handleSubmit =(event)=>{
     event.preventDefault()
-    console.log(task)
+    dispatch(addTask(task))
  }
 return (
 <form onSubmit={handleSubmit}>
