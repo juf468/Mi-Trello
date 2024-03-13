@@ -1,1 +1,1 @@
-## TODO LIST WITH COMPLETE CRUD (Redux Toolkit & TailwindCSS)
+## TODO LIST WITH COMPLETE CRUD (Redux Toolkit & TailwindCSS) **es solo interfas**
