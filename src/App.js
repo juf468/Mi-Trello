@@ -13,7 +13,7 @@ function App() {
         <Route path='/' element= {<TaskList/>}/>
         <Route path='/create-task' element= {<TaskForm/>}/>
         </Routes>
-      </BrowserRouter>
+        </BrowserRouter>
    
     </div>
   );

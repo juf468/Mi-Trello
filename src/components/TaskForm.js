@@ -2,11 +2,13 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addTask } from "../feactures/task/taskSlice"
 import { v4 as uuid} from "uuid"
+import { useNavigate } from "react-router-dom"
 
 
 
 const TaskForm = ( ) =>{
    const dispatch = useDispatch()
+   const navigate = useNavigate()
 
     const [task, setTask] = useState ({
         title: '',
@@ -24,6 +26,7 @@ const TaskForm = ( ) =>{
         ...task,
         id:uuid(),//le agrego el id de uuid como prop extra
      }))
+     navigate('/')
  }
 return (
 <form onSubmit={handleSubmit}>
