@@ -1,14 +1,16 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { addTask } from "../feactures/task/taskSlice"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addTask, editTask } from "../feactures/task/taskSlice"
 import { v4 as uuid} from "uuid"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 
 const TaskForm = ( ) =>{
    const dispatch = useDispatch()
    const navigate = useNavigate()
+   const params = useParams()
+   const tasks = useSelector(state => state.tasks)
 
     const [task, setTask] = useState ({
         title: '',
@@ -22,15 +24,29 @@ const TaskForm = ( ) =>{
  }
  const handleSubmit =(event)=>{
     event.preventDefault();
-    dispatch(addTask({
+    if (params.id){
+        dispatch(editTask(task))
+
+    }else{
+        dispatch(addTask({//accion que crea la task
         ...task,
         id:uuid(),//le agrego el id de uuid como prop extra
      }))
-     navigate('/')
+    }
+     navigate('/')  
+ };
+
+
+ useEffect(()=>{
+ if(params.id){
+    setTask(tasks.find(tasks => tasks.id === params.id))//llena el form con los datos de la tarea encontrada por id
+    
  }
+ 
+ },[])
 return (
 <form onSubmit={handleSubmit}>
-    <input name="title" type="text" placeholder="title" onChange={handleChange}/>
+    <input name="title" type="text" placeholder="title" onChange={handleChange} value={task.title}/>
     <textarea name="description" placeholder="description" onChange={handleChange} value={task.description}> </textarea>
     <button> save </button>
 </form>

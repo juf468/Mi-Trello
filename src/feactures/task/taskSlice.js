@@ -21,6 +21,17 @@ const initialState = [
     reducers:{
         addTask: (state, action)=>{
            state.push(action.payload); 
+        },   
+        editTask: (state, action) => {//necesito el id y el payload con los nuevos datos
+           const {id, title, description} = action.payload
+           const foundtask = state.find (task => task.id === id)
+           if (foundtask){
+            foundtask.title = title
+            foundtask.description = description
+
+           }
+
+        
         },
         deleteTask: (state,action)=>{
            const taskFound = state.find (task => task.id === action.payload)
@@ -28,10 +39,11 @@ const initialState = [
             state.splice(state.indexOf(taskFound),1) // eliminará la primera aparición de taskFound en el array state
           }
 
-        }
+        },
+   
 
     }
 
 })
-export const {addTask, deleteTask} = tasksSlice.actions
+export const {addTask, deleteTask, editTask} = tasksSlice.actions
 export default tasksSlice.reducer
