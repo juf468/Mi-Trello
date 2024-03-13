@@ -43,7 +43,7 @@ const TaskForm = ( ) =>{
     
  }
  
- },[])
+ },[params.id, tasks])
 return (
 <form onSubmit={handleSubmit} className="bg-zinc-800 max-w-sm p-4">
     <label htmlFor="title" className="block text-sm font-bold mb-2"
